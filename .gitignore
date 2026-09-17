@@ -1,0 +1,31 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime suite outputs (keep directory via .gitkeep)
+results/run_*/
+results/latest/
+results/*.json
+!results/.gitkeep
+
+# Huge raw agent dumps / logs
+*.log
+**/history_full*.json
+**/agent_dump*/
+.DS_Store

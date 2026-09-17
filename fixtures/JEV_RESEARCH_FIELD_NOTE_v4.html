@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Jev Ultrafast — Research Navigation Evaluation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<style>
+/* Tokens inspired by getdesign.md Coinbase DESIGN.md + Astryx table/detail patterns */
+:root {
+  --primary: #0052ff;
+  --primary-active: #003ecc;
+  --ink: #0a0b0d;
+  --body: #5b616e;
+  --muted: #7c828a;
+  --muted-soft: #a8acb3;
+  --hairline: #dee1e6;
+  --hairline-soft: #eef0f3;
+  --canvas: #ffffff;
+  --surface-soft: #f7f7f7;
+  --surface-strong: #eef0f3;
+  --surface-dark: #0a0b0d;
+  --surface-dark-elevated: #16181c;
+  --on-dark: #ffffff;
+  --on-dark-soft: #a8acb3;
+  --up: #05b169;
+  --down: #cf202f;
+  --accent-yellow: #f4b000;
+  --radius-xl: 24px;
+  --radius-md: 12px;
+  --radius-pill: 100px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.04);
+  --section: 72px;
+  --max: 1120px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--surface-soft);
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.topnav {
+  height: 64px;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+.brand span { color: var(--primary); }
+.topnav-meta {
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.pill-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+
+.hero {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  padding: 72px 32px 64px;
+}
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: end;
+}
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-dark-elevated);
+  color: var(--on-dark-soft);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  margin: 0 0 16px;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 400;
+  letter-spacing: -1.3px;
+  line-height: 1.05;
+  max-width: 14ch;
+}
+.hero .lede {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--on-dark-soft);
+  max-width: 48ch;
+}
+.stat-stack {
+  background: var(--surface-dark-elevated);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 16px;
+}
+.stat .n {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.stat .n.up { color: var(--up); }
+.stat .n.down { color: var(--down); }
+.stat .n.warn { color: var(--accent-yellow); }
+.stat .l {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--on-dark-soft);
+}
+
+.band {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--section) 32px;
+}
+.band.soft { background: var(--surface-soft); max-width: none; padding-left: 0; padding-right: 0; }
+.band.soft > .inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.band.white { background: var(--canvas); max-width: none; padding-left: 0; padding-right: 0; }
+.band.white > .inner { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  line-height: 1.11;
+}
+h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.33;
+}
+.section-lede {
+  margin: 0 0 32px;
+  color: var(--body);
+  max-width: 60ch;
+}
+
+.key-finding {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  margin: 0 0 28px;
+  box-shadow: var(--shadow);
+}
+.key-finding .label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.key-finding p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+  max-width: 50ch;
+}
+
+.viz-card {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  margin: 0 0 20px;
+}
+.viz-card .caption {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--body);
+}
+.legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: 1fr; }
+}
+.feature-card {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+}
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-strong);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.feature-card p {
+  margin: 0;
+  color: var(--body);
+  font-size: 14px;
+}
+.feature-card .impl {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hairline-soft);
+  color: var(--ink);
+}
+.feature-card .impl span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+/* Astryx-inspired data table page */
+.table-shell {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hairline);
+}
+.table-toolbar .title { font-weight: 600; font-size: 16px; }
+.table-toolbar .hint { font-size: 13px; color: var(--muted); }
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+table.data th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface-soft);
+}
+table.data td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--hairline-soft);
+  vertical-align: top;
+}
+table.data tr:last-child td { border-bottom: none; }
+table.data .primary { font-weight: 600; color: var(--ink); }
+table.data .secondary { font-size: 12px; color: var(--muted); margin-top: 2px; }
+table.data .note { color: var(--body); font-size: 13px; }
+table.data .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; font-size: 13px; }
+table.data .num { text-align: right; font-variant-numeric: tabular-nums; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--surface-strong);
+}
+.pill.pass { color: var(--up); background: rgba(5,177,105,.12); }
+.pill.partial { color: #9a7b2f; background: rgba(244,176,0,.16); }
+.pill.fail { color: var(--down); background: rgba(207,32,47,.1); }
+.pill.fail_expected { color: var(--muted); }
+
+.apps td:nth-child(2) { font-weight: 600; }
+.fit-strong { color: var(--up); }
+.fit-partial { color: #9a7b2f; }
+.fit-weak { color: var(--down); }
+
+.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 800px) { .two { grid-template-columns: 1fr; } }
+.panel {
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+}
+.panel ul { margin: 8px 0 0; padding-left: 18px; color: var(--body); }
+.panel li { margin-bottom: 6px; }
+
+.cta-dark {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  max-width: none;
+  padding: 72px 32px;
+}
+.cta-dark .inner { max-width: var(--max); margin: 0 auto; }
+.cta-dark h2 { color: var(--on-dark); }
+.cta-dark p { color: var(--on-dark-soft); max-width: 56ch; }
+.cta-dark ol { color: var(--on-dark); padding-left: 18px; }
+.cta-dark li { margin-bottom: 10px; color: var(--on-dark-soft); }
+.cta-dark li strong { color: var(--on-dark); }
+
+.footer {
+  background: var(--canvas);
+  border-top: 1px solid var(--hairline);
+  padding: 48px 32px 64px;
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 800px) { .footer-inner { grid-template-columns: 1fr; } }
+.footer h4 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
+.footer p, .footer li { font-size: 13px; color: var(--body); margin: 0 0 8px; }
+.legal {
+  max-width: var(--max);
+  margin: 24px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline-soft);
+  font-size: 12px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+  <nav class="topnav">
+    <div class="brand">Research Eval <span>·</span> Jev Ultrafast</div>
+    <div class="topnav-meta">
+      <span>17 Sep 2026</span>
+      <span>QC · Chief of Staff</span>
+      <a class="pill-cta" href="#results">View results</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Technology evaluation · Not investment research</div>
+        <h1>Where a research browser helps — and where it stops</h1>
+        <p class="lede">Goal-driven navigation for literature, macro data, and filings — scored with independent verification, plus stress cases a careful researcher would expect to fail.</p>
+      </div>
+      <div class="stat-stack" aria-label="Session scorecard">
+        <div class="stat"><div class="n up">4</div><div class="l">QC passes</div></div>
+        <div class="stat"><div class="n warn">1</div><div class="l">Partials</div></div>
+        <div class="stat"><div class="n down">3</div><div class="l">Unexpected misses</div></div>
+        <div class="stat"><div class="n">3</div><div class="l">Expected fails hit</div></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="band white"><div class="inner">
+    <h2>Executive takeaway</h2>
+    <p class="section-lede">Eleven live research-navigation cases on a Grok Bot machine. Auto-scores that celebrated blocked listing pages were reversed under human QC.</p>
+    <div class="key-finding">
+      <div class="label">Key finding</div>
+      <p>Jev is already a strong <em>hands</em> layer when the destination is structured and known. It is not yet a reliable general literature-discovery or download agent. Analytical judgment stays with the researcher — or Quant’s brain suite — after the page lands.</p>
+    </div>
+    <div class="viz-card">
+      <svg viewBox="0 0 560 28" width="100%" height="36" role="img" aria-label="Outcome mix"><rect x="0.0" y="0" width="203.6" height="28" rx="14" fill="#05b169"/><text x="101.8" y="18" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter,system-ui,sans-serif" font-weight="600">4</text><rect x="203.6" y="0" width="50.9" height="28" rx="14" fill="#f4b000"/><text x="229.1" y="18" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter,system-ui,sans-serif" font-weight="600">1</text><rect x="254.5" y="0" width="152.7" height="28" rx="14" fill="#cf202f"/><text x="330.9" y="18" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter,system-ui,sans-serif" font-weight="600">3</text><rect x="407.3" y="0" width="152.7" height="28" rx="14" fill="#7c828a"/><text x="483.6" y="18" text-anchor="middle" fill="#fff" font-size="12" font-family="Inter,system-ui,sans-serif" font-weight="600">3</text></svg>
+      <div class="legend">
+        <span><i style="background:#05b169"></i>Pass</span>
+        <span><i style="background:#f4b000"></i>Partial</span>
+        <span><i style="background:#cf202f"></i>Miss</span>
+        <span><i style="background:#7c828a"></i>Expected fail</span>
+      </div>
+      <div class="caption">Exhibit 1 · Outcome mix after QC (n=11)</div>
+    </div>
+  </div></section>
+
+  <section class="band soft"><div class="inner">
+    <h2>Findings</h2>
+    <p class="section-lede">Each finding leads a card; the implication sits under a hairline — Astryx-style detail blocks, Coinbase card radius.</p>
+    <div class="grid-3">
+    <article class="feature-card">
+      <div class="badge-pill">Finding A</div>
+      <h3>Known identifiers win</h3>
+      <p>DOI, FRED series, EDGAR CIK, and exact encyclopedia titles land cleanly — often in well under five seconds.</p>
+      <p class="impl"><span>Implication</span>Prefer Jev when the destination is already named.</p>
+    </article>
+    <article class="feature-card">
+      <div class="badge-pill">Finding B</div>
+      <h3>Open discovery still stalls</h3>
+      <p>Scholar reaches results then blocks; arXiv hit a model-call budget; NBER and Crossref stalled on listing/home pages.</p>
+      <p class="impl"><span>Implication</span>Do not trust Jev alone for literature discovery → cite landing.</p>
+    </article>
+    <article class="feature-card">
+      <div class="badge-pill">Finding C</div>
+      <h3>Predicted walls calibrated</h3>
+      <p>Upload, Scholar→PDF, and chart CSV export failed as expected — matching MVP limits and earlier Flights/Amazon/Cloudflare results.</p>
+      <p class="impl"><span>Implication</span>Route downloads and unsupported modalities elsewhere.</p>
+    </article></div>
+  </div></section>
+
+  <section class="band white"><div class="inner">
+    <h2>Evidence · timing</h2>
+    <p class="section-lede">Agent-reported elapsed milliseconds. Semantic green/amber/red are text and bar fills only — never button chrome.</p>
+    <div class="viz-card">
+      <svg viewBox="0 0 640 376" width="100%" height="396">
+    <text x="0" y="22" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">DOI → Spelta et al. (JRSS-A)</text>
+    <rect x="260" y="8" width="55" height="20" rx="10" fill="#05b169" opacity="1"/>
+    <text x="327" y="22" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">614</text>
+    
+    <text x="0" y="58" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">FRED → INDPRO</text>
+    <rect x="260" y="44" width="276" height="20" rx="10" fill="#05b169" opacity="1"/>
+    <text x="548" y="58" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">3,065</text>
+    
+    <text x="0" y="94" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">EDGAR → Apple filings</text>
+    <rect x="260" y="80" width="283" height="20" rx="10" fill="#05b169" opacity="1"/>
+    <text x="555" y="94" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">3,144</text>
+    
+    <text x="0" y="130" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">Wikipedia → Kalman filter</text>
+    <rect x="260" y="116" width="293" height="20" rx="10" fill="#05b169" opacity="1"/>
+    <text x="565" y="130" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">3,254</text>
+    
+    <text x="0" y="166" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">Google Scholar → Giannone–Reichlin–S</text>
+    <rect x="260" y="152" width="218" height="20" rx="10" fill="#f4b000" opacity="1"/>
+    <text x="490" y="166" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">2,418</text>
+    
+    <text x="0" y="202" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">NBER → Stock–Watson</text>
+    <rect x="260" y="188" width="47" height="20" rx="10" fill="#cf202f" opacity="1"/>
+    <text x="319" y="202" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">527</text>
+    
+    <text x="0" y="238" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">Crossref → DOI record</text>
+    <rect x="260" y="224" width="111" height="20" rx="10" fill="#cf202f" opacity="1"/>
+    <text x="383" y="238" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">1,241</text>
+    
+    <text x="0" y="274" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">PDF upload / convert</text>
+    <rect x="260" y="260" width="40" height="20" rx="10" fill="#7c828a" opacity="0.5"/>
+    <text x="312" y="274" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">448</text>
+    
+    <text x="0" y="310" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">Scholar → PDF download</text>
+    <rect x="260" y="296" width="162" height="20" rx="10" fill="#7c828a" opacity="0.5"/>
+    <text x="434" y="310" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">1,801</text>
+    
+    <text x="0" y="346" fill="#5b616e" font-size="13" font-family="Inter,system-ui,sans-serif">OWID chart → CSV</text>
+    <rect x="260" y="332" width="320" height="20" rx="10" fill="#7c828a" opacity="0.5"/>
+    <text x="592" y="346" fill="#0a0b0d" font-size="13" font-family="'JetBrains Mono',ui-monospace,monospace" font-weight="500">3,549</text>
+    </svg>
+      <div class="caption">Exhibit 2 · Agent elapsed time (ms). Expected fails drawn at reduced opacity.</div>
+    </div>
+  </div></section>
+
+  <section class="band soft" id="results"><div class="inner">
+    <h2>Results table</h2>
+    <p class="section-lede">Convention-first data table: primary label, status pill, tabular mono metrics, QC note.</p>
+    <div class="table-shell">
+      <div class="table-toolbar">
+        <div class="title">Research browser cases</div>
+        <div class="hint">Graded by Chief of Staff</div>
+      </div>
+      <table class="data">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Grade</th>
+            <th style="text-align:right">Agent ms</th>
+            <th style="text-align:right">Actions</th>
+            <th>QC note</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+      <td><div class="primary">DOI → Spelta et al. (JRSS-A)</div><div class="secondary">paper_search</div></td>
+      <td><span class="pill pass">Pass</span></td>
+      <td class="mono num">614</td>
+      <td class="mono num">0</td>
+      <td class="note">DOI resolved straight to the JRSS-A article page at OUP — gold path for known-DOI research.</td>
+    </tr><tr>
+      <td><div class="primary">FRED → INDPRO</div><div class="secondary">data_portal</div></td>
+      <td><span class="pill pass">Pass</span></td>
+      <td class="mono num">3,065</td>
+      <td class="mono num">3</td>
+      <td class="note">Landed on FRED INDPRO series page — macro data portal nav is a sweet spot.</td>
+    </tr><tr>
+      <td><div class="primary">EDGAR → Apple filings</div><div class="secondary">data_portal</div></td>
+      <td><span class="pill pass">Pass</span></td>
+      <td class="mono num">3,144</td>
+      <td class="mono num">4</td>
+      <td class="note">EDGAR browse for Apple CIK=320193 — filings list achieved.</td>
+    </tr><tr>
+      <td><div class="primary">Wikipedia → Kalman filter</div><div class="secondary">paper_search</div></td>
+      <td><span class="pill pass">Pass</span></td>
+      <td class="mono num">3,254</td>
+      <td class="mono num">2</td>
+      <td class="note">Correct Kalman filter article (algorithm), not a person-only page.</td>
+    </tr><tr>
+      <td><div class="primary">Google Scholar → Giannone–Reichlin–Small</div><div class="secondary">paper_search</div></td>
+      <td><span class="pill partial">Partial</span></td>
+      <td class="mono num">2,418</td>
+      <td class="mono num">2</td>
+      <td class="note">Reached Scholar results for the query, then blocked before opening the paper record — search works; citation landing incomplete.</td>
+    </tr><tr>
+      <td><div class="primary">arXiv → Sinkhorn divergences</div><div class="secondary">paper_search</div></td>
+      <td><span class="pill fail">Miss</span></td>
+      <td class="mono num">—</td>
+      <td class="mono num">—</td>
+      <td class="note">Hit demo model-call budget after a long ready loop (~44s) without a clean abstract landing.</td>
+    </tr><tr>
+      <td><div class="primary">NBER → Stock–Watson</div><div class="secondary">paper_search</div></td>
+      <td><span class="pill fail">Miss</span></td>
+      <td class="mono num">527</td>
+      <td class="mono num">0</td>
+      <td class="note">Blocked on NBER papers listing without opening a Stock–Watson paper — auto-scorer over-credited URL keywords.</td>
+    </tr><tr>
+      <td><div class="primary">Crossref → DOI record</div><div class="secondary">paper_compare</div></td>
+      <td><span class="pill fail">Miss</span></td>
+      <td class="mono num">1,241</td>
+      <td class="mono num">1</td>
+      <td class="note">Blocked on Crossref home after one action — DOI metadata not reached.</td>
+    </tr><tr>
+      <td><div class="primary">PDF upload / convert</div><div class="secondary">expect_fail</div></td>
+      <td><span class="pill fail_expected">Expected fail</span></td>
+      <td class="mono num">448</td>
+      <td class="mono num">1</td>
+      <td class="note">Upload/convert PDF blocked — matches MVP (no uploads).</td>
+    </tr><tr>
+      <td><div class="primary">Scholar → PDF download</div><div class="secondary">expect_fail</div></td>
+      <td><span class="pill fail_expected">Expected fail</span></td>
+      <td class="mono num">1,801</td>
+      <td class="mono num">2</td>
+      <td class="note">Scholar→PDF download maze blocked after search — predicted.</td>
+    </tr><tr>
+      <td><div class="primary">OWID chart → CSV</div><div class="secondary">expect_fail</div></td>
+      <td><span class="pill fail_expected">Expected fail</span></td>
+      <td class="mono num">3,549</td>
+      <td class="mono num">6</td>
+      <td class="note">Our World in Data chart+CSV download blocked mid-flow — complex widget wall.</td>
+    </tr></tbody>
+      </table>
+    </div>
+    <p class="caption" style="font-size:13px;color:var(--muted);margin-top:12px">Exhibit 3 · Case-level outcomes</p>
+  </div></section>
+
+  <section class="band white"><div class="inner">
+    <h2>Application map</h2>
+    <div class="table-shell">
+      <table class="data apps">
+        <thead><tr><th>Research job</th><th>Fit</th><th>Recommendation</th></tr></thead>
+        <tbody>
+<tr><td>Open known DOI / publisher page</td><td class='fit-strong'>Strong</td><td>Prefer Jev</td></tr><tr><td>FRED / clean macro portals</td><td class='fit-strong'>Strong</td><td>Prefer Jev</td></tr><tr><td>EDGAR company → filings</td><td class='fit-strong'>Strong</td><td>Prefer Jev</td></tr><tr><td>Encyclopedia disambiguation</td><td class='fit-strong'>Strong</td><td>Prefer Jev</td></tr><tr><td>Scholar query → results</td><td class='fit-partial'>Partial</td><td>Jev + verify / open cite</td></tr><tr><td>arXiv / NBER / Crossref discovery</td><td class='fit-weak'>Weak (session)</td><td>Fallback or direct URL</td></tr><tr><td>PDF download / upload</td><td class='fit-weak'>Out of scope</td><td>Do not use Jev</td></tr><tr><td>Chart UI → CSV export</td><td class='fit-weak'>Wall</td><td>API or manual</td></tr><tr><td>Cite / leakage / forecast eval</td><td class=''>Brain layer</td><td>Quant suite after landing</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:12px">Exhibit 4 · Practical fit for quant / stats workflows</p>
+  </div></section>
+
+  <section class="band soft"><div class="inner">
+    <h2>Operating model</h2>
+    <div class="two">
+      <div class="panel">
+        <h3>Layer 1 · Hands (Jev)</h3>
+        <ul>
+          <li>Open known DOI, FRED series, EDGAR CIK, clean articles</li>
+          <li>Verify URL / on-page evidence — never trust DONE alone</li>
+          <li>On <span class="mono">blocked</span>, hand off to computer-use or human</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Layer 2 · Brain (Quant suite)</h3>
+        <ul>
+          <li>Citation integrity, leakage, nowcast information sets</li>
+          <li>Hard-fail fabricated DOIs</li>
+          <li>File: <code>research_evals/analytical_tool_eval_suite_v1.md</code></li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="cta-dark">
+    <div class="inner">
+      <h2>Recommendations</h2>
+      <p>Guidance over enforcement — defaults that help, escape hatches that don’t fight you.</p>
+      <ol>
+        <li><strong>Default Jev</strong> for known-URL / portal goals; fall back on blocked, auth, or native GUI.</li>
+        <li><strong>Prefer DOI and direct series links</strong> over open-ended Scholar loops until discovery→landing is stable.</li>
+        <li><strong>Always verify</strong> final URL/text before citing or scoring.</li>
+        <li><strong>Keep Quant’s analytical suite</strong> as the post-navigation quality bar.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Design system notes</h4>
+        <p>Visual language follows <a href="https://github.com/VoltAgent/awesome-claude-design">VoltAgent/awesome-claude-design</a> via the Coinbase <code>DESIGN.md</code> (institutional white canvas, scarce blue accent, weight-400 display via Inter substitutes, pill CTAs, 24px cards).</p>
+        <p>Layout patterns borrow Astryx conventions from <a href="https://github.com/facebook/astryx">facebook/astryx</a>: table-page shell, detail cards, semantic up/down as text color only, strong documented structure for humans and agents.</p>
+      </div>
+      <div>
+        <h4>Artifacts</h4>
+        <p>Upstream: <a href="https://github.com/browser-use/jev-ultrafast">browser-use/jev-ultrafast</a></p>
+        <p>Case JSON: <code>sideproject-results/research_browser/</code></p>
+        <p>Setup: <code>/home/box/reference/jev-ultrafast-setup.md</code></p>
+      </div>
+    </div>
+    <div class="legal">
+      This note evaluates browser-automation tooling for internal research workflows. It is not investment advice and not affiliated with Coinbase, Meta/Astryx, or Goldman Sachs. Timings are session-specific (17 Sep 2026). DESIGN.md inspiration for educational UI consistency only.
+    </div>
+  </footer>
+</body>
+</html>

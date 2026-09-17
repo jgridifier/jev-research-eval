@@ -1,0 +1,84 @@
+suite: research_browser
+version: v1
+description: "Eleven live research-navigation cases for Jev Ultrafast (literature, macro data, filings + expected-fail stress)."
+cases:
+  - id: R1_scholar_giannone_nowcast
+    tier: paper_search
+    expect_fail: false
+    why: "Canonical nowcasting cite via Scholar → publisher/PDF/record page"
+    url: "https://scholar.google.com/"
+    goal: "Search Google Scholar for Giannone Reichlin Small nowcasting 2008. Open a result that clearly refers to their Journal of Monetary Economics (or closely related) nowcasting factor paper. Stop when that paper's Scholar or publisher page is visible."
+
+  - id: R2_doi_spelta_ot
+    tier: paper_search
+    expect_fail: false
+    why: "Needle: Spelta/Pagnottoni/Pecora JRSS-A OT nowcasting via DOI resolver"
+    url: "https://doi.org/10.1093/jrsssa/qnaf036"
+    goal: "Open this DOI. Stop when the article page for the JRSS Series A paper on nowcasting/optimal transport (Spelta / Pagnottoni / Pecora or equivalent title) is visible, including title/authors."
+    success_substr: "jrsssa"
+
+  - id: R3_arxiv_search_sinkhorn
+    tier: paper_search
+    expect_fail: false
+    why: "arXiv search UX + open a relevant Sinkhorn divergence paper"
+    url: "https://arxiv.org/"
+    goal: "Search arXiv for 'Sinkhorn divergences Feydy'. Open the abstract page for a paper clearly about Sinkhorn divergences (preferably Feydy et al.). Stop on the abstract page."
+
+  - id: R4_fred_indpro
+    tier: data_portal
+    expect_fail: false
+    why: "Macro research data portal — FRED industrial production series"
+    url: "https://fred.stlouisfed.org/"
+    goal: "Find the FRED series for US Industrial Production (INDPRO). Stop on the INDPRO series page showing the chart/series title."
+    success_substr: "INDPRO"
+
+  - id: R5_edgar_company_search
+    tier: data_portal
+    expect_fail: false
+    why: "SEC EDGAR company search → filings landing"
+    url: "https://www.sec.gov/edgar/searchedgar/companysearch"
+    goal: "Search EDGAR for company Apple Inc (ticker AAPL) and open the company filings page. Stop when Apple's CIK/filings list is visible."
+    success_substr: "CIK=320193"
+
+  - id: R6_nber_wp_search
+    tier: paper_search
+    expect_fail: false
+    why: "NBER working paper search for factor forecasting"
+    url: "https://www.nber.org/papers"
+    goal: "Search NBER papers for Stock Watson diffusion index forecasting. Open one relevant working paper or paper page. Stop when the paper title/abstract page is visible."
+
+  - id: R7_crossref_doi_metadata
+    tier: paper_compare
+    expect_fail: false
+    why: "Crossref API UI / DOI metadata lookup"
+    url: "https://search.crossref.org/"
+    goal: "Search Crossref for DOI 10.1093/jrsssa/qnaf036. Open the record showing bibliographic metadata for that work. Stop when title/authors/DOI are visible on Crossref."
+
+  - id: R8_wikipedia_disambiguation
+    tier: paper_search
+    expect_fail: false
+    why: "Disambiguation — Kalman filter article not Kalman as person-only"
+    url: "https://en.wikipedia.org/wiki/Main_Page"
+    goal: "Go to the Wikipedia article specifically about the Kalman filter (the estimation algorithm), not a disambiguation-only dead end. Stop on that article."
+    success_substr: "Kalman_filter"
+
+  - id: R9_expect_fail_pdf_upload_replicate
+    tier: expect_fail
+    expect_fail: true
+    why: "Upload a PDF to a web tool — uploads out of Jev MVP"
+    url: "https://www.ilovepdf.com/pdf_to_word"
+    goal: "Upload any PDF using the site upload control and convert it to Word. Stop when a downloadable Word file is ready."
+
+  - id: R10_expect_fail_scholar_cite_popup_maze
+    tier: expect_fail
+    expect_fail: true
+    why: "Cite export / paywall / interstitial maze often brittle"
+    url: "https://scholar.google.com/"
+    goal: "Find Diebold Mariano 1995 comparing predictive accuracy, open the publisher/PDF if possible, and download the PDF through any clickwall. Stop only when a PDF is downloading or open in the browser PDF viewer."
+
+  - id: R11_expect_fail_nested_data_widget
+    tier: expect_fail
+    expect_fail: true
+    why: "Complex JS data widget / possible bot wall"
+    url: "https://ourworldindata.org/"
+    goal: "Open a chart for US GDP growth, switch the chart to a specific country comparison with China, download the data CSV from the chart download menu. Stop when the CSV download has started."
