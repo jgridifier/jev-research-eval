@@ -1,119 +1,13 @@
 {
-  "qc_pass": 4,
-  "qc_partial": 1,
-  "qc_fail": 3,
-  "qc_fail_expected": 3,
-  "results": [
-    {
-      "id": "R1_scholar_giannone_nowcast",
-      "tier": "paper_search",
-      "expect_fail": false,
-      "why": "Canonical nowcasting cite via Scholar \u2192 publisher/PDF/record page",
-      "url": "https://scholar.google.com/",
-      "goal": "Search Google Scholar for Giannone Reichlin Small nowcasting 2008. Open a result that clearly refers to their Journal of Monetary Economics (or closely related) nowcasting factor paper. Stop when that paper's Scholar or publisher page is visible.",
-      "ok": true,
-      "final_url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
-      "status": "blocked",
-      "elapsed_ms_agent": 2418,
-      "actions": 2,
-      "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Search",
-          "kind": "fill",
-          "choice": "e5",
-          "probability": 1.0,
-          "confidence": 0.99,
-          "latency_ms": 544,
-          "text": "Giannone Reichlin Small nowcasting 2008",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 754,
-          "operation": "TYPE_TEXT",
-          "target": "5",
-          "page_changed": true,
-          "url": "https://scholar.google.com/",
-          "usage": {
-            "input_tokens": 2673,
-            "output_tokens": 189
-          },
-          "executed_ms": 1320,
-          "elapsed_ms": 1377
-        },
-        {
-          "step": 2,
-          "action": "Search",
-          "kind": "click",
-          "choice": "e7",
-          "probability": 0.98,
-          "confidence": 0.96,
-          "latency_ms": 265,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "6",
-          "page_changed": true,
-          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
-          "usage": {
-            "input_tokens": 2764,
-            "output_tokens": 188
-          },
-          "executed_ms": 1652,
-          "elapsed_ms": 2248
-        }
-      ],
-      "matched": true,
-      "wall_s": 3.191,
-      "qc_grade": "partial",
-      "qc_note": "Reached Scholar results for the query, then blocked before opening the paper record \u2014 search works; citation landing incomplete.",
-      "history": [
-        {
-          "step": 1,
-          "action": "Search",
-          "kind": "fill",
-          "choice": "e5",
-          "probability": 1.0,
-          "confidence": 0.99,
-          "latency_ms": 544,
-          "text": "Giannone Reichlin Small nowcasting 2008",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 754,
-          "operation": "TYPE_TEXT",
-          "target": "5",
-          "page_changed": true,
-          "url": "https://scholar.google.com/",
-          "usage": {
-            "input_tokens": 2673,
-            "output_tokens": 189
-          },
-          "executed_ms": 1320,
-          "elapsed_ms": 1377
-        },
-        {
-          "step": 2,
-          "action": "Search",
-          "kind": "click",
-          "choice": "e7",
-          "probability": 0.98,
-          "confidence": 0.96,
-          "latency_ms": 265,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "6",
-          "page_changed": true,
-          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
-          "usage": {
-            "input_tokens": 2764,
-            "output_tokens": 188
-          },
-          "executed_ms": 1652,
-          "elapsed_ms": 2248
-        }
-      ]
-    },
+  "session": "2026-09-17",
+  "title": "Jev Ultrafast research-browser eval",
+  "scorecard": {
+    "qc_pass": 4,
+    "qc_partial": 1,
+    "qc_fail": 3,
+    "qc_fail_expected": 3
+  },
+  "cases": [
     {
       "id": "R2_doi_spelta_ot",
       "tier": "paper_search",
@@ -127,31 +21,13 @@
       "elapsed_ms_agent": 614,
       "actions": 0,
       "error": null,
-      "history_tail": [],
       "matched": true,
       "wall_s": 7.606,
       "qc_grade": "pass",
       "qc_note": "DOI resolved straight to the JRSS-A article page at OUP \u2014 gold path for known-DOI research.",
-      "history": []
-    },
-    {
-      "id": "R3_arxiv_search_sinkhorn",
-      "tier": "paper_search",
-      "expect_fail": false,
-      "why": "arXiv search UX + open a relevant Sinkhorn divergence paper",
-      "url": "https://arxiv.org/",
-      "goal": "Search arXiv for 'Sinkhorn divergences Feydy'. Open the abstract page for a paper clearly about Sinkhorn divergences (preferably Feydy et al.). Stop on the abstract page.",
-      "ok": false,
-      "final_url": null,
-      "status": null,
-      "elapsed_ms_agent": null,
-      "actions": null,
-      "error": "ValueError: Reached the demo's model-call budget",
+      "history": [],
       "history_tail": [],
-      "wall_s": 44.203,
-      "qc_grade": "fail",
-      "qc_note": "Hit demo model-call budget after a long ready loop (~44s) without a clean abstract landing.",
-      "history": []
+      "trace_source": "empty"
     },
     {
       "id": "R4_fred_indpro",
@@ -165,75 +41,7 @@
       "status": "done",
       "elapsed_ms_agent": 3065,
       "actions": 3,
-      "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Search FRED Data...",
-          "kind": "fill",
-          "choice": "e10",
-          "probability": 1.0,
-          "confidence": 0.98,
-          "latency_ms": 212,
-          "text": "INDPRO",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 595,
-          "operation": "TYPE_TEXT",
-          "target": "10",
-          "page_changed": true,
-          "url": "https://fred.stlouisfed.org/",
-          "usage": {
-            "input_tokens": 3196,
-            "output_tokens": 241
-          },
-          "executed_ms": 844,
-          "elapsed_ms": 901
-        },
-        {
-          "step": 2,
-          "action": "Submit Search",
-          "kind": "click",
-          "choice": "e12",
-          "probability": 0.96,
-          "confidence": 0.92,
-          "latency_ms": 204,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "11",
-          "page_changed": true,
-          "url": "https://fred.stlouisfed.org/searchresults?st=INDPRO",
-          "usage": {
-            "input_tokens": 3239,
-            "output_tokens": 240
-          },
-          "executed_ms": 1138,
-          "elapsed_ms": 1457
-        },
-        {
-          "step": 3,
-          "action": "Industrial Production: Total Index",
-          "kind": "click",
-          "choice": "e16",
-          "probability": 0.99,
-          "confidence": 0.95,
-          "latency_ms": 170,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "15",
-          "page_changed": true,
-          "url": "https://fred.stlouisfed.org/series/INDPRO",
-          "usage": {
-            "input_tokens": 3010,
-            "output_tokens": 214
-          },
-          "executed_ms": 1876,
-          "elapsed_ms": 2142
-        }
-      ],
+      "error": "ValueError: Text helper returned no valid field value; nothing typed.",
       "matched": true,
       "wall_s": 4.491,
       "qc_grade": "pass",
@@ -305,7 +113,76 @@
           "executed_ms": 1876,
           "elapsed_ms": 2142
         }
-      ]
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Search FRED Data...",
+          "kind": "fill",
+          "choice": "e10",
+          "probability": 1.0,
+          "confidence": 0.98,
+          "latency_ms": 212,
+          "text": "INDPRO",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 595,
+          "operation": "TYPE_TEXT",
+          "target": "10",
+          "page_changed": true,
+          "url": "https://fred.stlouisfed.org/",
+          "usage": {
+            "input_tokens": 3196,
+            "output_tokens": 241
+          },
+          "executed_ms": 844,
+          "elapsed_ms": 901
+        },
+        {
+          "step": 2,
+          "action": "Submit Search",
+          "kind": "click",
+          "choice": "e12",
+          "probability": 0.96,
+          "confidence": 0.92,
+          "latency_ms": 204,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "11",
+          "page_changed": true,
+          "url": "https://fred.stlouisfed.org/searchresults?st=INDPRO",
+          "usage": {
+            "input_tokens": 3239,
+            "output_tokens": 240
+          },
+          "executed_ms": 1138,
+          "elapsed_ms": 1457
+        },
+        {
+          "step": 3,
+          "action": "Industrial Production: Total Index",
+          "kind": "click",
+          "choice": "e16",
+          "probability": 0.99,
+          "confidence": 0.95,
+          "latency_ms": 170,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "15",
+          "page_changed": true,
+          "url": "https://fred.stlouisfed.org/series/INDPRO",
+          "usage": {
+            "input_tokens": 3010,
+            "output_tokens": 214
+          },
+          "executed_ms": 1876,
+          "elapsed_ms": 2142
+        }
+      ],
+      "trace_source": "history"
     },
     {
       "id": "R5_edgar_company_search",
@@ -319,97 +196,7 @@
       "status": "done",
       "elapsed_ms_agent": 3144,
       "actions": 4,
-      "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Search SEC.gov & EDGAR",
-          "kind": "fill",
-          "choice": "e14",
-          "probability": 1.0,
-          "confidence": 0.48,
-          "latency_ms": 226,
-          "text": "AAPL",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 475,
-          "operation": "TYPE_TEXT",
-          "target": "14",
-          "page_changed": true,
-          "url": "https://www.sec.gov/search-filings",
-          "usage": {
-            "input_tokens": 4005,
-            "output_tokens": 297
-          },
-          "executed_ms": 738,
-          "elapsed_ms": 797
-        },
-        {
-          "step": 2,
-          "action": "Search",
-          "kind": "click",
-          "choice": "e16",
-          "probability": 0.91,
-          "confidence": 0.95,
-          "latency_ms": 190,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "15",
-          "page_changed": true,
-          "url": "https://secsearch.sec.gov/search?query=AAPL&utf8=%3F&affiliate=secsearch",
-          "usage": {
-            "input_tokens": 4049,
-            "output_tokens": 296
-          },
-          "executed_ms": 1016,
-          "elapsed_ms": 1466
-        },
-        {
-          "step": 3,
-          "action": "Wait for the page to update",
-          "kind": "wait",
-          "choice": "wait",
-          "probability": 0.74,
-          "confidence": 0.62,
-          "latency_ms": 150,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "WAIT",
-          "target": null,
-          "page_changed": false,
-          "url": "https://secsearch.sec.gov/search?query=AAPL&utf8=%3F&affiliate=secsearch",
-          "usage": {
-            "input_tokens": 732,
-            "output_tokens": 40
-          },
-          "executed_ms": 1749,
-          "elapsed_ms": 1756
-        },
-        {
-          "step": 4,
-          "action": "Apple ( AAPL ) Filings on EDGAR",
-          "kind": "click",
-          "choice": "e20",
-          "probability": 0.6,
-          "confidence": 0.83,
-          "latency_ms": 184,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "19",
-          "page_changed": true,
-          "url": "https://www.sec.gov/edgar/browse/?CIK=320193&owner=exclude",
-          "usage": {
-            "input_tokens": 3962,
-            "output_tokens": 264
-          },
-          "executed_ms": 2216,
-          "elapsed_ms": 2369
-        }
-      ],
+      "error": "ValueError: Reached the demo's model-call budget",
       "matched": true,
       "wall_s": 4.977,
       "qc_grade": "pass",
@@ -503,93 +290,98 @@
           "executed_ms": 2216,
           "elapsed_ms": 2369
         }
-      ]
-    },
-    {
-      "id": "R6_nber_wp_search",
-      "tier": "paper_search",
-      "expect_fail": false,
-      "why": "NBER working paper search for factor forecasting",
-      "url": "https://www.nber.org/papers",
-      "goal": "Search NBER papers for Stock Watson diffusion index forecasting. Open one relevant working paper or paper page. Stop when the paper title/abstract page is visible.",
-      "ok": true,
-      "final_url": "https://www.nber.org/papers?page=1&perPage=50&sortBy=public_date",
-      "status": "blocked",
-      "elapsed_ms_agent": 527,
-      "actions": 0,
-      "error": null,
-      "history_tail": [],
-      "matched": true,
-      "wall_s": 1.351,
-      "qc_grade": "fail",
-      "qc_note": "Blocked on NBER papers listing without opening a Stock\u2013Watson paper \u2014 auto-scorer over-credited URL keywords.",
-      "history": []
-    },
-    {
-      "id": "R7_crossref_doi_metadata",
-      "tier": "paper_compare",
-      "expect_fail": false,
-      "why": "Crossref API UI / DOI metadata lookup",
-      "url": "https://search.crossref.org/",
-      "goal": "Search Crossref for DOI 10.1093/jrsssa/qnaf036. Open the record showing bibliographic metadata for that work. Stop when title/authors/DOI are visible on Crossref.",
-      "ok": true,
-      "final_url": "https://search.crossref.org/",
-      "status": "blocked",
-      "elapsed_ms_agent": 1241,
-      "actions": 1,
-      "error": null,
+      ],
       "history_tail": [
         {
           "step": 1,
-          "action": "Title, author, DOI, ORCID iD, etc.",
+          "action": "Search SEC.gov & EDGAR",
           "kind": "fill",
-          "choice": "e11",
+          "choice": "e14",
           "probability": 1.0,
-          "confidence": 0.96,
-          "latency_ms": 222,
-          "text": "10.1093/jrsssa/qnaf036",
+          "confidence": 0.48,
+          "latency_ms": 226,
+          "text": "AAPL",
           "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 729,
+          "text_latency_ms": 475,
           "operation": "TYPE_TEXT",
-          "target": "11",
+          "target": "14",
           "page_changed": true,
-          "url": "https://search.crossref.org/",
+          "url": "https://www.sec.gov/search-filings",
           "usage": {
-            "input_tokens": 2613,
-            "output_tokens": 184
+            "input_tokens": 4005,
+            "output_tokens": 297
           },
-          "executed_ms": 972,
-          "elapsed_ms": 1027
+          "executed_ms": 738,
+          "elapsed_ms": 797
+        },
+        {
+          "step": 2,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e16",
+          "probability": 0.91,
+          "confidence": 0.95,
+          "latency_ms": 190,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "15",
+          "page_changed": true,
+          "url": "https://secsearch.sec.gov/search?query=AAPL&utf8=%3F&affiliate=secsearch",
+          "usage": {
+            "input_tokens": 4049,
+            "output_tokens": 296
+          },
+          "executed_ms": 1016,
+          "elapsed_ms": 1466
+        },
+        {
+          "step": 3,
+          "action": "Wait for the page to update",
+          "kind": "wait",
+          "choice": "wait",
+          "probability": 0.74,
+          "confidence": 0.62,
+          "latency_ms": 150,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "WAIT",
+          "target": null,
+          "page_changed": false,
+          "url": "https://secsearch.sec.gov/search?query=AAPL&utf8=%3F&affiliate=secsearch",
+          "usage": {
+            "input_tokens": 732,
+            "output_tokens": 40
+          },
+          "executed_ms": 1749,
+          "elapsed_ms": 1756
+        },
+        {
+          "step": 4,
+          "action": "Apple ( AAPL ) Filings on EDGAR",
+          "kind": "click",
+          "choice": "e20",
+          "probability": 0.6,
+          "confidence": 0.83,
+          "latency_ms": 184,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "19",
+          "page_changed": true,
+          "url": "https://www.sec.gov/edgar/browse/?CIK=320193&owner=exclude",
+          "usage": {
+            "input_tokens": 3962,
+            "output_tokens": 264
+          },
+          "executed_ms": 2216,
+          "elapsed_ms": 2369
         }
       ],
-      "matched": true,
-      "wall_s": 2.705,
-      "qc_grade": "fail",
-      "qc_note": "Blocked on Crossref home after one action \u2014 DOI metadata not reached.",
-      "history": [
-        {
-          "step": 1,
-          "action": "Title, author, DOI, ORCID iD, etc.",
-          "kind": "fill",
-          "choice": "e11",
-          "probability": 1.0,
-          "confidence": 0.96,
-          "latency_ms": 222,
-          "text": "10.1093/jrsssa/qnaf036",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 729,
-          "operation": "TYPE_TEXT",
-          "target": "11",
-          "page_changed": true,
-          "url": "https://search.crossref.org/",
-          "usage": {
-            "input_tokens": 2613,
-            "output_tokens": 184
-          },
-          "executed_ms": 972,
-          "elapsed_ms": 1027
-        }
-      ]
+      "trace_source": "history"
     },
     {
       "id": "R8_wikipedia_disambiguation",
@@ -604,52 +396,6 @@
       "elapsed_ms_agent": 3254,
       "actions": 2,
       "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Search Wikipedia",
-          "kind": "fill",
-          "choice": "e2",
-          "probability": 1.0,
-          "confidence": 0.97,
-          "latency_ms": 271,
-          "text": "Kalman filter",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 606,
-          "operation": "TYPE_TEXT",
-          "target": "2",
-          "page_changed": true,
-          "url": "https://en.wikipedia.org/wiki/Main_Page",
-          "usage": {
-            "input_tokens": 6224,
-            "output_tokens": 478
-          },
-          "executed_ms": 1215,
-          "elapsed_ms": 1284
-        },
-        {
-          "step": 2,
-          "action": "Search",
-          "kind": "click",
-          "choice": "e4",
-          "probability": 0.92,
-          "confidence": 0.94,
-          "latency_ms": 252,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "3",
-          "page_changed": true,
-          "url": "https://en.wikipedia.org/wiki/Kalman_filter",
-          "usage": {
-            "input_tokens": 6268,
-            "output_tokens": 477
-          },
-          "executed_ms": 1554,
-          "elapsed_ms": 2046
-        }
-      ],
       "matched": true,
       "wall_s": 3.737,
       "qc_grade": "pass",
@@ -699,7 +445,364 @@
           "executed_ms": 1554,
           "elapsed_ms": 2046
         }
-      ]
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Search Wikipedia",
+          "kind": "fill",
+          "choice": "e2",
+          "probability": 1.0,
+          "confidence": 0.97,
+          "latency_ms": 271,
+          "text": "Kalman filter",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 606,
+          "operation": "TYPE_TEXT",
+          "target": "2",
+          "page_changed": true,
+          "url": "https://en.wikipedia.org/wiki/Main_Page",
+          "usage": {
+            "input_tokens": 6224,
+            "output_tokens": 478
+          },
+          "executed_ms": 1215,
+          "elapsed_ms": 1284
+        },
+        {
+          "step": 2,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e4",
+          "probability": 0.92,
+          "confidence": 0.94,
+          "latency_ms": 252,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "3",
+          "page_changed": true,
+          "url": "https://en.wikipedia.org/wiki/Kalman_filter",
+          "usage": {
+            "input_tokens": 6268,
+            "output_tokens": 477
+          },
+          "executed_ms": 1554,
+          "elapsed_ms": 2046
+        }
+      ],
+      "trace_source": "history"
+    },
+    {
+      "id": "R1_scholar_giannone_nowcast",
+      "tier": "paper_search",
+      "expect_fail": false,
+      "why": "Canonical nowcasting cite via Scholar \u2192 publisher/PDF/record page",
+      "url": "https://scholar.google.com/",
+      "goal": "Search Google Scholar for Giannone Reichlin Small nowcasting 2008. Open a result that clearly refers to their Journal of Monetary Economics (or closely related) nowcasting factor paper. Stop when that paper's Scholar or publisher page is visible.",
+      "ok": true,
+      "final_url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
+      "status": "blocked",
+      "elapsed_ms_agent": 2418,
+      "actions": 2,
+      "error": null,
+      "matched": true,
+      "wall_s": 3.191,
+      "qc_grade": "partial",
+      "qc_note": "Reached Scholar results for the query, then blocked before opening the paper record \u2014 search works; citation landing incomplete.",
+      "history": [
+        {
+          "step": 1,
+          "action": "Search",
+          "kind": "fill",
+          "choice": "e5",
+          "probability": 1.0,
+          "confidence": 0.99,
+          "latency_ms": 544,
+          "text": "Giannone Reichlin Small nowcasting 2008",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 754,
+          "operation": "TYPE_TEXT",
+          "target": "5",
+          "page_changed": true,
+          "url": "https://scholar.google.com/",
+          "usage": {
+            "input_tokens": 2673,
+            "output_tokens": 189
+          },
+          "executed_ms": 1320,
+          "elapsed_ms": 1377
+        },
+        {
+          "step": 2,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e7",
+          "probability": 0.98,
+          "confidence": 0.96,
+          "latency_ms": 265,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "6",
+          "page_changed": true,
+          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
+          "usage": {
+            "input_tokens": 2764,
+            "output_tokens": 188
+          },
+          "executed_ms": 1652,
+          "elapsed_ms": 2248
+        }
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Search",
+          "kind": "fill",
+          "choice": "e5",
+          "probability": 1.0,
+          "confidence": 0.99,
+          "latency_ms": 544,
+          "text": "Giannone Reichlin Small nowcasting 2008",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 754,
+          "operation": "TYPE_TEXT",
+          "target": "5",
+          "page_changed": true,
+          "url": "https://scholar.google.com/",
+          "usage": {
+            "input_tokens": 2673,
+            "output_tokens": 189
+          },
+          "executed_ms": 1320,
+          "elapsed_ms": 1377
+        },
+        {
+          "step": 2,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e7",
+          "probability": 0.98,
+          "confidence": 0.96,
+          "latency_ms": 265,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "6",
+          "page_changed": true,
+          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Giannone+Reichlin+Small+nowcasting+2008&btnG=",
+          "usage": {
+            "input_tokens": 2764,
+            "output_tokens": 188
+          },
+          "executed_ms": 1652,
+          "elapsed_ms": 2248
+        }
+      ],
+      "trace_source": "history"
+    },
+    {
+      "id": "R3_arxiv_search_sinkhorn",
+      "tier": "paper_search",
+      "expect_fail": false,
+      "why": "arXiv search UX + open a relevant Sinkhorn divergence paper",
+      "url": "https://arxiv.org/",
+      "goal": "Search arXiv for 'Sinkhorn divergences Feydy'. Open the abstract page for a paper clearly about Sinkhorn divergences (preferably Feydy et al.). Stop on the abstract page.",
+      "ok": false,
+      "final_url": "https://arxiv.org/",
+      "status": "ready",
+      "elapsed_ms_agent": 44845,
+      "actions": 2,
+      "error": "ValueError: Reached the demo's model-call budget",
+      "matched": false,
+      "wall_s": 44.203,
+      "qc_grade": "fail",
+      "qc_note": "Hit demo model-call budget after a long ready loop (~44s) without a clean abstract landing.",
+      "history": [
+        {
+          "step": 1,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e2",
+          "probability": 0.83,
+          "confidence": 0.78,
+          "latency_ms": 566,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "2",
+          "page_changed": true,
+          "url": "https://arxiv.org/",
+          "usage": {
+            "input_tokens": 15035,
+            "output_tokens": 1303
+          },
+          "executed_ms": 586,
+          "elapsed_ms": 660
+        },
+        {
+          "step": 2,
+          "action": "Search arXiv",
+          "kind": "fill",
+          "choice": "e6",
+          "probability": 1.0,
+          "confidence": 0.95,
+          "latency_ms": 307,
+          "text": "Sinkhorn divergences Feydy",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 612,
+          "operation": "TYPE_TEXT",
+          "target": "6",
+          "page_changed": true,
+          "url": "https://arxiv.org/",
+          "usage": {
+            "input_tokens": 15714,
+            "output_tokens": 1353
+          },
+          "executed_ms": 1621,
+          "elapsed_ms": 1691
+        }
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e2",
+          "probability": 0.83,
+          "confidence": 0.78,
+          "latency_ms": 566,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "2",
+          "page_changed": true,
+          "url": "https://arxiv.org/",
+          "usage": {
+            "input_tokens": 15035,
+            "output_tokens": 1303
+          },
+          "executed_ms": 586,
+          "elapsed_ms": 660
+        },
+        {
+          "step": 2,
+          "action": "Search arXiv",
+          "kind": "fill",
+          "choice": "e6",
+          "probability": 1.0,
+          "confidence": 0.95,
+          "latency_ms": 307,
+          "text": "Sinkhorn divergences Feydy",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 612,
+          "operation": "TYPE_TEXT",
+          "target": "6",
+          "page_changed": true,
+          "url": "https://arxiv.org/",
+          "usage": {
+            "input_tokens": 15714,
+            "output_tokens": 1353
+          },
+          "executed_ms": 1621,
+          "elapsed_ms": 1691
+        }
+      ],
+      "trace_source": "live_full"
+    },
+    {
+      "id": "R6_nber_wp_search",
+      "tier": "paper_search",
+      "expect_fail": false,
+      "why": "NBER working paper search for factor forecasting",
+      "url": "https://www.nber.org/papers",
+      "goal": "Search NBER papers for Stock Watson diffusion index forecasting. Open one relevant working paper or paper page. Stop when the paper title/abstract page is visible.",
+      "ok": true,
+      "final_url": "https://www.nber.org/papers?page=1&perPage=50&sortBy=public_date",
+      "status": "blocked",
+      "elapsed_ms_agent": 527,
+      "actions": 0,
+      "error": null,
+      "matched": true,
+      "wall_s": 1.351,
+      "qc_grade": "fail",
+      "qc_note": "Blocked on NBER papers listing without opening a Stock\u2013Watson paper \u2014 auto-scorer over-credited URL keywords.",
+      "history": [],
+      "history_tail": [],
+      "trace_source": "empty"
+    },
+    {
+      "id": "R7_crossref_doi_metadata",
+      "tier": "paper_compare",
+      "expect_fail": false,
+      "why": "Crossref API UI / DOI metadata lookup",
+      "url": "https://search.crossref.org/",
+      "goal": "Search Crossref for DOI 10.1093/jrsssa/qnaf036. Open the record showing bibliographic metadata for that work. Stop when title/authors/DOI are visible on Crossref.",
+      "ok": true,
+      "final_url": "https://search.crossref.org/",
+      "status": "blocked",
+      "elapsed_ms_agent": 1241,
+      "actions": 1,
+      "error": null,
+      "matched": true,
+      "wall_s": 2.705,
+      "qc_grade": "fail",
+      "qc_note": "Blocked on Crossref home after one action \u2014 DOI metadata not reached.",
+      "history": [
+        {
+          "step": 1,
+          "action": "Title, author, DOI, ORCID iD, etc.",
+          "kind": "fill",
+          "choice": "e11",
+          "probability": 1.0,
+          "confidence": 0.96,
+          "latency_ms": 222,
+          "text": "10.1093/jrsssa/qnaf036",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 729,
+          "operation": "TYPE_TEXT",
+          "target": "11",
+          "page_changed": true,
+          "url": "https://search.crossref.org/",
+          "usage": {
+            "input_tokens": 2613,
+            "output_tokens": 184
+          },
+          "executed_ms": 972,
+          "elapsed_ms": 1027
+        }
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Title, author, DOI, ORCID iD, etc.",
+          "kind": "fill",
+          "choice": "e11",
+          "probability": 1.0,
+          "confidence": 0.96,
+          "latency_ms": 222,
+          "text": "10.1093/jrsssa/qnaf036",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 729,
+          "operation": "TYPE_TEXT",
+          "target": "11",
+          "page_changed": true,
+          "url": "https://search.crossref.org/",
+          "usage": {
+            "input_tokens": 2613,
+            "output_tokens": 184
+          },
+          "executed_ms": 972,
+          "elapsed_ms": 1027
+        }
+      ],
+      "trace_source": "history"
     },
     {
       "id": "R9_expect_fail_pdf_upload_replicate",
@@ -714,30 +817,6 @@
       "elapsed_ms_agent": 448,
       "actions": 1,
       "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Upload your file and transform it. \n         Select PDF file",
-          "kind": "click",
-          "choice": "e8",
-          "probability": 1.0,
-          "confidence": 0.78,
-          "latency_ms": 198,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "8",
-          "page_changed": false,
-          "url": "https://www.ilovepdf.com/pdf_to_word",
-          "usage": {
-            "input_tokens": 1766,
-            "output_tokens": 118
-          },
-          "executed_ms": 210,
-          "elapsed_ms": 261
-        }
-      ],
       "matched": false,
       "wall_s": 1.55,
       "qc_grade": "fail_expected",
@@ -765,7 +844,32 @@
           "executed_ms": 210,
           "elapsed_ms": 261
         }
-      ]
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Upload your file and transform it. \n         Select PDF file",
+          "kind": "click",
+          "choice": "e8",
+          "probability": 1.0,
+          "confidence": 0.78,
+          "latency_ms": 198,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "8",
+          "page_changed": false,
+          "url": "https://www.ilovepdf.com/pdf_to_word",
+          "usage": {
+            "input_tokens": 1766,
+            "output_tokens": 118
+          },
+          "executed_ms": 210,
+          "elapsed_ms": 261
+        }
+      ],
+      "trace_source": "history"
     },
     {
       "id": "R10_expect_fail_scholar_cite_popup_maze",
@@ -780,52 +884,6 @@
       "elapsed_ms_agent": 1801,
       "actions": 2,
       "error": null,
-      "history_tail": [
-        {
-          "step": 1,
-          "action": "Search",
-          "kind": "fill",
-          "choice": "e5",
-          "probability": 1.0,
-          "confidence": 0.99,
-          "latency_ms": 231,
-          "text": "Diebold Mariano 1995 comparing predictive accuracy",
-          "text_helper": "inception/mercury-2.5",
-          "text_latency_ms": 461,
-          "operation": "TYPE_TEXT",
-          "target": "5",
-          "page_changed": true,
-          "url": "https://scholar.google.com/",
-          "usage": {
-            "input_tokens": 2539,
-            "output_tokens": 181
-          },
-          "executed_ms": 714,
-          "elapsed_ms": 769
-        },
-        {
-          "step": 2,
-          "action": "Search",
-          "kind": "click",
-          "choice": "e7",
-          "probability": 0.98,
-          "confidence": 0.95,
-          "latency_ms": 227,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "6",
-          "page_changed": true,
-          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Diebold+Mariano+1995+comparing+predictive+accuracy&btnG=",
-          "usage": {
-            "input_tokens": 2614,
-            "output_tokens": 180
-          },
-          "executed_ms": 1007,
-          "elapsed_ms": 1623
-        }
-      ],
       "matched": false,
       "wall_s": 2.099,
       "qc_grade": "fail_expected",
@@ -875,7 +933,54 @@
           "executed_ms": 1007,
           "elapsed_ms": 1623
         }
-      ]
+      ],
+      "history_tail": [
+        {
+          "step": 1,
+          "action": "Search",
+          "kind": "fill",
+          "choice": "e5",
+          "probability": 1.0,
+          "confidence": 0.99,
+          "latency_ms": 231,
+          "text": "Diebold Mariano 1995 comparing predictive accuracy",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 461,
+          "operation": "TYPE_TEXT",
+          "target": "5",
+          "page_changed": true,
+          "url": "https://scholar.google.com/",
+          "usage": {
+            "input_tokens": 2539,
+            "output_tokens": 181
+          },
+          "executed_ms": 714,
+          "elapsed_ms": 769
+        },
+        {
+          "step": 2,
+          "action": "Search",
+          "kind": "click",
+          "choice": "e7",
+          "probability": 0.98,
+          "confidence": 0.95,
+          "latency_ms": 227,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "6",
+          "page_changed": true,
+          "url": "https://scholar.google.com/scholar?hl=en&as_sdt=0%2C47&q=Diebold+Mariano+1995+comparing+predictive+accuracy&btnG=",
+          "usage": {
+            "input_tokens": 2614,
+            "output_tokens": 180
+          },
+          "executed_ms": 1007,
+          "elapsed_ms": 1623
+        }
+      ],
+      "trace_source": "history"
     },
     {
       "id": "R11_expect_fail_nested_data_widget",
@@ -890,131 +995,41 @@
       "elapsed_ms_agent": 3549,
       "actions": 6,
       "error": null,
-      "history_tail": [
-        {
-          "step": 2,
-          "action": "Submit",
-          "kind": "click",
-          "choice": "e18",
-          "probability": 0.59,
-          "confidence": 0.45,
-          "latency_ms": 243,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "18",
-          "page_changed": true,
-          "url": "https://ourworldindata.org/search?q=US+GDP+growth&resultType=all",
-          "usage": {
-            "input_tokens": 4420,
-            "output_tokens": 328
-          },
-          "executed_ms": 1435,
-          "elapsed_ms": 1652
-        },
-        {
-          "step": 3,
-          "action": "Submit search",
-          "kind": "click",
-          "choice": "e12",
-          "probability": 0.58,
-          "confidence": 0.48,
-          "latency_ms": 285,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "11",
-          "page_changed": true,
-          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
-          "usage": {
-            "input_tokens": 3732,
-            "output_tokens": 263
-          },
-          "executed_ms": 2494,
-          "elapsed_ms": 2551
-        },
-        {
-          "step": 4,
-          "action": "Submit search",
-          "kind": "click",
-          "choice": "e12",
-          "probability": 0.39,
-          "confidence": 0.53,
-          "latency_ms": 228,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "11",
-          "page_changed": false,
-          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
-          "usage": {
-            "input_tokens": 3764,
-            "output_tokens": 263
-          },
-          "executed_ms": 2804,
-          "elapsed_ms": 2862
-        },
-        {
-          "step": 5,
-          "action": "Submit search",
-          "kind": "click",
-          "choice": "e12",
-          "probability": 0.48,
-          "confidence": 0.46,
-          "latency_ms": 283,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "11",
-          "page_changed": false,
-          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
-          "usage": {
-            "input_tokens": 3796,
-            "output_tokens": 263
-          },
-          "executed_ms": 3168,
-          "elapsed_ms": 3228
-        },
-        {
-          "step": 6,
-          "action": "Submit search",
-          "kind": "click",
-          "choice": "e12",
-          "probability": 0.42,
-          "confidence": 0.5,
-          "latency_ms": 243,
-          "text": null,
-          "text_helper": null,
-          "text_latency_ms": 0,
-          "operation": "CLICK",
-          "target": "11",
-          "page_changed": false,
-          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
-          "usage": {
-            "input_tokens": 3828,
-            "output_tokens": 263
-          },
-          "executed_ms": 3490,
-          "elapsed_ms": 3549
-        }
-      ],
       "matched": false,
       "wall_s": 4.837,
       "qc_grade": "fail_expected",
       "qc_note": "Our World in Data chart+CSV download blocked mid-flow \u2014 complex widget wall.",
       "history": [
         {
+          "step": 1,
+          "action": "Submit",
+          "kind": "fill",
+          "choice": "e18",
+          "probability": 1.0,
+          "confidence": 0.8,
+          "latency_ms": 424,
+          "text": "US GDP growth",
+          "text_helper": "inception/mercury-2.5",
+          "text_latency_ms": 626,
+          "operation": "TYPE_TEXT",
+          "target": "18",
+          "page_changed": true,
+          "url": "https://ourworldindata.org/",
+          "usage": {
+            "input_tokens": 4211,
+            "output_tokens": 313
+          },
+          "executed_ms": 1094,
+          "elapsed_ms": 1156
+        },
+        {
           "step": 2,
           "action": "Submit",
           "kind": "click",
           "choice": "e18",
-          "probability": 0.59,
-          "confidence": 0.45,
-          "latency_ms": 243,
+          "probability": 0.54,
+          "confidence": 0.47,
+          "latency_ms": 207,
           "text": null,
           "text_helper": null,
           "text_latency_ms": 0,
@@ -1026,17 +1041,17 @@
             "input_tokens": 4420,
             "output_tokens": 328
           },
-          "executed_ms": 1435,
-          "elapsed_ms": 1652
+          "executed_ms": 1385,
+          "elapsed_ms": 1541
         },
         {
           "step": 3,
           "action": "Submit search",
           "kind": "click",
           "choice": "e12",
-          "probability": 0.58,
-          "confidence": 0.48,
-          "latency_ms": 285,
+          "probability": 0.56,
+          "confidence": 0.54,
+          "latency_ms": 209,
           "text": null,
           "text_helper": null,
           "text_latency_ms": 0,
@@ -1048,17 +1063,17 @@
             "input_tokens": 3732,
             "output_tokens": 263
           },
-          "executed_ms": 2494,
-          "elapsed_ms": 2551
+          "executed_ms": 2280,
+          "elapsed_ms": 2338
         },
         {
           "step": 4,
           "action": "Submit search",
           "kind": "click",
           "choice": "e12",
-          "probability": 0.39,
-          "confidence": 0.53,
-          "latency_ms": 228,
+          "probability": 0.4,
+          "confidence": 0.51,
+          "latency_ms": 230,
           "text": null,
           "text_helper": null,
           "text_latency_ms": 0,
@@ -1070,17 +1085,17 @@
             "input_tokens": 3764,
             "output_tokens": 263
           },
-          "executed_ms": 2804,
-          "elapsed_ms": 2862
+          "executed_ms": 2590,
+          "elapsed_ms": 2649
         },
         {
           "step": 5,
           "action": "Submit search",
           "kind": "click",
           "choice": "e12",
-          "probability": 0.48,
-          "confidence": 0.46,
-          "latency_ms": 283,
+          "probability": 0.37,
+          "confidence": 0.48,
+          "latency_ms": 160,
           "text": null,
           "text_helper": null,
           "text_latency_ms": 0,
@@ -1092,17 +1107,17 @@
             "input_tokens": 3796,
             "output_tokens": 263
           },
-          "executed_ms": 3168,
-          "elapsed_ms": 3228
+          "executed_ms": 2831,
+          "elapsed_ms": 2889
         },
         {
           "step": 6,
           "action": "Submit search",
           "kind": "click",
           "choice": "e12",
-          "probability": 0.42,
-          "confidence": 0.5,
-          "latency_ms": 243,
+          "probability": 0.37,
+          "confidence": 0.49,
+          "latency_ms": 223,
           "text": null,
           "text_helper": null,
           "text_latency_ms": 0,
@@ -1114,10 +1129,123 @@
             "input_tokens": 3828,
             "output_tokens": 263
           },
-          "executed_ms": 3490,
-          "elapsed_ms": 3549
+          "executed_ms": 3132,
+          "elapsed_ms": 3190
         }
-      ]
+      ],
+      "history_tail": [
+        {
+          "step": 2,
+          "action": "Submit",
+          "kind": "click",
+          "choice": "e18",
+          "probability": 0.54,
+          "confidence": 0.47,
+          "latency_ms": 207,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "18",
+          "page_changed": true,
+          "url": "https://ourworldindata.org/search?q=US+GDP+growth&resultType=all",
+          "usage": {
+            "input_tokens": 4420,
+            "output_tokens": 328
+          },
+          "executed_ms": 1385,
+          "elapsed_ms": 1541
+        },
+        {
+          "step": 3,
+          "action": "Submit search",
+          "kind": "click",
+          "choice": "e12",
+          "probability": 0.56,
+          "confidence": 0.54,
+          "latency_ms": 209,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "11",
+          "page_changed": true,
+          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
+          "usage": {
+            "input_tokens": 3732,
+            "output_tokens": 263
+          },
+          "executed_ms": 2280,
+          "elapsed_ms": 2338
+        },
+        {
+          "step": 4,
+          "action": "Submit search",
+          "kind": "click",
+          "choice": "e12",
+          "probability": 0.4,
+          "confidence": 0.51,
+          "latency_ms": 230,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "11",
+          "page_changed": false,
+          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
+          "usage": {
+            "input_tokens": 3764,
+            "output_tokens": 263
+          },
+          "executed_ms": 2590,
+          "elapsed_ms": 2649
+        },
+        {
+          "step": 5,
+          "action": "Submit search",
+          "kind": "click",
+          "choice": "e12",
+          "probability": 0.37,
+          "confidence": 0.48,
+          "latency_ms": 160,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "11",
+          "page_changed": false,
+          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
+          "usage": {
+            "input_tokens": 3796,
+            "output_tokens": 263
+          },
+          "executed_ms": 2831,
+          "elapsed_ms": 2889
+        },
+        {
+          "step": 6,
+          "action": "Submit search",
+          "kind": "click",
+          "choice": "e12",
+          "probability": 0.37,
+          "confidence": 0.49,
+          "latency_ms": 223,
+          "text": null,
+          "text_helper": null,
+          "text_latency_ms": 0,
+          "operation": "CLICK",
+          "target": "11",
+          "page_changed": false,
+          "url": "https://ourworldindata.org/search?q=GDP+growth&countries=United+States&resultType=all",
+          "usage": {
+            "input_tokens": 3828,
+            "output_tokens": 263
+          },
+          "executed_ms": 3132,
+          "elapsed_ms": 3190
+        }
+      ],
+      "trace_source": "live_full"
     }
   ]
 }

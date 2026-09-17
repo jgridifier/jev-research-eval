@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Run research-browser cases via jev-ultrafast scripts/run_goal.py.
+"""Run research-browser cases via scripts/run_goal_full.py (full action history).
+
+Writes complete history[] into each results/<id>.json for notebook Traces
+(unlike upstream run_goal.py which only keeps history_tail).
 
 Env (required for live runs):
   TYPESAFE_API_KEY, TEXT_MODEL_API_KEY, BU_CDP_URL
@@ -131,7 +134,7 @@ def run_one(
     python: str,
     dry_run: bool,
 ) -> dict:
-    run_goal = jev_root / "scripts" / "run_goal.py"
+    run_goal = ROOT / "scripts" / "run_goal_full.py"
     json_out = out_dir / f"{case['id']}.json"
     cmd = [
         python,
@@ -165,6 +168,7 @@ def run_one(
         "wall_s": None,
         "matched": None,
         "history_tail": None,
+        "history": None,
     }
 
     if dry_run:
@@ -204,6 +208,9 @@ def run_one(
                 record["actions"] = payload.get("actions")
                 record["final_url"] = payload.get("final_url")
                 record["history_tail"] = payload.get("history_tail")
+                record["history"] = payload.get("history")
+                if record.get("error") is None and payload.get("error"):
+                    record["error"] = payload.get("error")
             except json.JSONDecodeError as e:
                 record["error"] = f"bad json-out: {e}"
         else:
@@ -243,6 +250,7 @@ def run_one(
             "actions": record["actions"],
             "error": record["error"],
             "history_tail": record["history_tail"],
+            "history": record.get("history"),
             "matched": record["matched"],
             "wall_s": record["wall_s"],
             "exit_code": record["exit_code"],

@@ -25,8 +25,9 @@ Each case in `cases/research_browser_v1.yaml` has: `id`, `tier`, `expect_fail`,
 
 ## Auto vs human QC
 
-1. **Auto run** (`scripts/run_suite.py`) calls `jev-ultrafast/scripts/run_goal.py`
-   and records status, elapsed ms, actions, final URL, short history tail.
+1. **Auto run** (`scripts/run_suite.py`) calls `scripts/run_goal_full.py`
+   (Agent import, same loop as upstream `run_goal.py`) and records status,
+   elapsed ms, actions, final URL, and the **full** `history` list (plus `history_tail`).
 2. **Auto “ok”** means `run_goal` exit 0 (agent `done` + optional URL substring).
    Listing pages that merely contain keywords can be over-credited.
 3. **Human QC** grades each case independently of auto-ok:
@@ -35,7 +36,8 @@ Each case in `cases/research_browser_v1.yaml` has: `id`, `tier`, `expect_fail`,
    - `fail` — unexpected miss
    - `fail_expected` — stress case failed as predicted (`expect_fail: true`)
 4. Merge with `scripts/apply_qc.py` → `fixtures/qc_rescored.json`.
-5. Report with `scripts/generate_report_v4.py`.
+5. Report with `scripts/generate_report_v4.py`; interactive Trace notebook with
+   `scripts/generate_notebook_v1.py` (static HTML — no run-from-page).
 
 ## Expected-fail rationale
 
@@ -64,10 +66,14 @@ Required for live runs: `TYPESAFE_API_KEY`, `TEXT_MODEL_API_KEY`, `BU_CDP_URL`
 ## Report regeneration (offline)
 
 QC grades + timings in `fixtures/qc_rescored.json` are enough to regenerate the
-HTML field note without a browser or API keys:
+HTML field note / notebook without a browser or API keys:
 
 ```bash
 python scripts/generate_report_v4.py \
   --input fixtures/qc_rescored.json \
   --output /tmp/jev_note_regen.html
+
+python scripts/generate_notebook_v1.py \
+  --input fixtures/qc_rescored.json \
+  --output /tmp/jev_notebook.html
 ```

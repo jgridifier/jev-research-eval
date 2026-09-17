@@ -1,7 +1,7 @@
 # Reproduce — full suite + report
 
 End-to-end checklist so a clean machine can re-run the 17 Sep 2026 research-browser
-evaluation and regenerate the v4 HTML note **without tribal knowledge**.
+evaluation and regenerate the v4 HTML note + research notebook **without tribal knowledge**.
 
 ## 0. This package
 
@@ -73,7 +73,10 @@ One case:
 python scripts/run_suite.py --id R4_fred_indpro --out results/latest
 ```
 
-Outputs: `results/latest/<id>.json` + `results/latest/summary.json`.
+Outputs: `results/latest/<id>.json` (includes full `history` + `history_tail`) + `results/latest/summary.json`.
+
+`run_suite.py` invokes `scripts/run_goal_full.py` so notebook Traces can use the complete action list
+(upstream `jev-ultrafast/scripts/run_goal.py` only keeps a 5-step tail).
 
 Exit code is non-zero if any **unexpected** (non `expect_fail`) case fails hard;
 all results are still written.
@@ -101,7 +104,7 @@ grades:
 
 See `docs/METHODOLOGY.md` for grade definitions.
 
-## 7. Regenerate the v4 HTML report
+## 7. Regenerate the v4 HTML field note
 
 Offline — no CDP / API keys required if QC JSON is present:
 
@@ -119,6 +122,45 @@ python -c "from pathlib import Path; t=Path('fixtures/JEV_RESEARCH_FIELD_NOTE_v4
 
 Published snapshot also kept under `fixtures/JEV_RESEARCH_FIELD_NOTE_v4.html`.
 
+## 7b. Regenerate the interactive research notebook
+
+Static viewer (HTML+CSS+JS). Embeds case JSON in `#notebook-data`. Click a case
+(`#case-R2_doi_spelta_ot`, …) for hypothesis, protocol, outcome dials, QC note,
+and an ordered **Trace report** of each history step.
+
+Trace preference order when regenerating:
+
+1. `results/run_notebook_traces/*.json` full `history` (live CLI dumps)
+2. `fixtures/cases_with_traces.json`
+3. `history` / `history_tail` on `fixtures/qc_rescored.json`
+
+```bash
+# After a full-history suite (optional but richer traces):
+python scripts/run_suite.py \
+  --jev-root "$JEV_ULTRAFAST_ROOT" \
+  --cases cases/research_browser_v1.yaml \
+  --out results/run_notebook_traces
+
+python scripts/generate_notebook_v1.py \
+  --input fixtures/qc_rescored.json \
+  --traces-dir results/run_notebook_traces \
+  --output fixtures/JEV_RESEARCH_NOTEBOOK_v1.html
+```
+
+Offline-only (fixtures already present):
+
+```bash
+python scripts/generate_notebook_v1.py
+```
+
+Sanity check:
+
+```bash
+python -c "from pathlib import Path; t=Path('fixtures/JEV_RESEARCH_NOTEBOOK_v1.html').read_text(); assert len(t)>40000 and 'R2_doi_spelta_ot' in t and 'Trace' in t"
+```
+
+The notebook **never** launches Agent/CDP from the browser — it only inspects dumps.
+
 ## 8. Optional — rebuild case YAML from QC
 
 ```bash
@@ -132,9 +174,11 @@ python scripts/extract_cases.py \
 | Artifact | How to rebuild |
 |----------|----------------|
 | Case definitions | `extract_cases.py` or edit YAML |
-| Live run JSON | `run_suite.py` + CDP + secrets |
+| Live run JSON (full history) | `run_suite.py` → `run_goal_full.py` + CDP + secrets |
 | QC grades file | human edit + `apply_qc.py` |
 | HTML field note | `generate_report_v4.py` from QC JSON |
+| Research notebook | `generate_notebook_v1.py` from QC + optional `results/run_notebook_traces/` |
 
-Fixtures in-repo (`qc_rescored.json`, published HTML) let you regenerate the
-report immediately; live re-runs need Chrome + API keys.
+Fixtures in-repo (`qc_rescored.json`, `cases_with_traces.json`, published HTML)
+let you regenerate the field note and notebook immediately; live re-runs need
+Chrome + API keys and produce fuller Trace timelines when history is dumped in full.
