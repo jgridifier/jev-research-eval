@@ -1,0 +1,144 @@
+suite: stress_human_workflows
+version: v1
+description: >
+  Large, human-relatable Jev stress cases: lit surveys for paper-writing,
+  SARIMAX/model-fix hunts with code, NBER-style research workflows, and
+  ops-style terms/policy review. Multi-step stop conditions — not single DOI opens.
+cases:
+  - id: S1_lit_survey_nowcasting_factors
+    tier: lit_survey
+    expect_fail: false
+    why: >
+      Mimic starting a paper: survey factor/nowcasting literature via Scholar,
+      land on a canonical paper page (not just search results).
+    url: "https://scholar.google.com/"
+    goal: >
+      You are drafting a short literature review on factor models for macroeconomic
+      nowcasting. Search Google Scholar for Giannone Reichlin Small nowcasting.
+      Open a result that is clearly their Journal of Monetary Economics (or closely
+      related) nowcasting paper — Scholar record or publisher page with title and
+      authors visible. Then, from that page or Scholar related/cited UI if available,
+      open ONE additional related paper on factor nowcasting or diffusion indexes
+      (Stock-Watson style is fine). Stop when that second paper's title/authors are
+      visible on Scholar or a publisher page.
+
+  - id: S2_sarimax_exog_forecast_fix
+    tier: model_fix
+    expect_fail: false
+    why: >
+      Model-building pain: SARIMAX with exogenous regressors — find a concrete
+      discussion or docs page about forecasting with exog, then an implementation.
+    url: "https://www.google.com/"
+    goal: >
+      Problem: a SARIMAX model with exogenous regressors forecasts badly out of
+      sample because future exog values are mishandled. Search the web for guidance
+      on statsmodels SARIMAX forecasting with exogenous variables (exog). Open a
+      useful page — official docs, Stack Overflow, or GitHub issue — that discusses
+      supplying future exogenous values / get_forecast with exog. Stop when that
+      page's main explanation or code snippet about exog forecasting is visible.
+
+  - id: S3_sarimax_code_implementation
+    tier: model_fix
+    expect_fail: false
+    why: >
+      After the paper/docs hunt, find runnable code (GitHub) for SARIMAX/exog.
+    url: "https://github.com/search"
+    goal: >
+      Find an open-source Python example or notebook that fits or forecasts a
+      SARIMAX (or SARIMA) model with exogenous regressors using statsmodels.
+      Prefer a real repository README, examples folder, or notebook rendering.
+      Stop when you can see Python code that constructs sm.tsa.SARIMAX (or
+      statsmodels.tsa.statespace.sarimax.SARIMAX) and passes an exog argument.
+
+  - id: S4_nber_inflation_nowcast_wp
+    tier: nber_research
+    expect_fail: false
+    why: >
+      Realistic NBER workflow: find a working paper on inflation nowcasting,
+      open the abstract page (not homepage stall).
+    url: "https://www.nber.org/papers"
+    goal: >
+      You need NBER working papers on inflation nowcasting for a research memo.
+      Search or browse NBER papers for inflation nowcasting (or nowcasting inflation).
+      Open one working paper page that is clearly about nowcasting inflation (title
+      and abstract or summary visible). Stop on that paper's NBER page.
+
+  - id: S5_arxiv_state_space_survey
+    tier: lit_survey
+    expect_fail: false
+    why: >
+      Paper-writing survey on state-space / Kalman methods via arXiv search + open.
+    url: "https://arxiv.org/"
+    goal: >
+      Survey recent work on state-space models for time series. Search arXiv for
+      'state space Kalman filter macroeconomic forecasting' (or a close query).
+      Open the abstract page of one clearly relevant paper. Stop on the arXiv
+      abstract page showing title, authors, and abstract text.
+
+  - id: S6_ops_aws_dpa_subprocessors
+    tier: ops_policy_review
+    expect_fail: false
+    why: >
+      Large-org ops review: vendor T&Cs / DPA — locate subprocessors or data
+      processing obligations (compliance analyst workflow).
+    url: "https://aws.amazon.com/compliance/data-privacy/"
+    goal: >
+      You are doing an operations / vendor review for a large organization.
+      From AWS data privacy / compliance materials, find the page that lists AWS
+      subprocessors OR the AWS GDPR Data Processing Addendum (DPA) / customer
+      agreement language about subprocessors. Stop when a page clearly about AWS
+      subprocessors or the DPA/subprocessor commitments is visible (table or
+      prose naming subprocessors or linking the DPA is enough).
+
+  - id: S7_ops_stripe_services_agreement_liability
+    tier: ops_policy_review
+    expect_fail: false
+    why: >
+      Ops counsel-style skim: find liability / limitation of liability in Stripe
+      services agreement.
+    url: "https://stripe.com/legal"
+    goal: >
+      Operations review: open Stripe's legal / services agreement materials and
+      find the section on limitation of liability (or liability cap). Stop when
+      that section heading and surrounding liability language are visible on the
+      page (scroll within the agreement if needed).
+
+  - id: S8_edgar_10k_risk_factors_skim
+    tier: ops_policy_review
+    expect_fail: false
+    why: >
+      Research ops hybrid: EDGAR 10-K risk factors skim for model risk / cyber
+      (analyst memo).
+    url: "https://www.sec.gov/edgar/searchedgar/companysearch"
+    goal: >
+      For a risk memo, look up Apple Inc (AAPL) on EDGAR, open a recent Form 10-K
+      filing document (HTML), and navigate to the Risk Factors section (Item 1A
+      or equivalent). Stop when Risk Factors heading and at least one risk-factor
+      paragraph are visible in the filing viewer.
+
+  - id: S9_expect_fail_multi_pdf_download_pack
+    tier: expect_fail
+    expect_fail: true
+    why: >
+      Stress: download a pack of PDFs for a lit review — downloads often brittle.
+    url: "https://scholar.google.com/"
+    goal: >
+      Build a reading pack: find Stock and Watson diffusion index / factor
+      forecasting work and DOWNLOAD at least one PDF of the paper (browser download
+      or PDF viewer with the file loaded from a direct PDF URL). Stop only when a
+      PDF is downloading or open as application/pdf in the tab.
+
+  - id: S10_fred_compare_two_series_workflow
+    tier: model_analysis
+    expect_fail: false
+    why: >
+      Analysis workflow: pull two related macro series into a FRED graph for
+      exploratory model work (not a single series open).
+    url: "https://fred.stlouisfed.org/"
+    goal: >
+      Exploratory analysis before fitting a model: open FRED, get to Industrial
+      Production (INDPRO), then add or open a comparison with Capacity Utilization
+      (TCU) or Unemployment Rate (UNRATE) so both series context is visible (either
+      a multi-series graph page or clearly navigated second series page after INDPRO).
+      Stop when INDPRO and the second series are both evidenced on screen (graph
+      with two series, or second series page after visiting INDPRO).

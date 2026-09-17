@@ -1,0 +1,51 @@
+{
+  "QS1_multi_site_lit_survey": [
+    "Visited an arXiv abs/pdf URL whose visible text mentions nowcast or factor or GDP",
+    "Visited an nber.org/papers/ URL with visible WP metadata",
+    "Visited academic.oup.com/jrsssa (or a search-results child URL)",
+    "Agent notes include three distinct anchors OR explicit block reasons\u2014no fabricated DOIs"
+  ],
+  "QS2_sarimax_papers_and_github": [
+    "URL contains statsmodels.org and SARIMAX docs content visible",
+    "URL contains github.com and an issues/ or discussions/ page with a real issue number",
+    "A paper abstract page open (arxiv.org/abs/ or publisher) with seasonal/SARIMA/state-space signal",
+    "No fake issue numbers"
+  ],
+  "QS3_ot_sinkhorn_implementation_hunt": [
+    "Opened github.com/PythonOT/POT LICENSE (or license blob) with MIT visible",
+    "Visited pythonot.github.io (docs page)",
+    "Visited AlessandroSpike Nowcasting-with-Optimal-Transport root or LICENSE attempt",
+    "Notes explicitly say Spelta LICENSE missing or present based on visible file list"
+  ],
+  "QS4_ragged_edge_nowcast_workflow": [
+    "fred.stlouisfed.org/series/GDP visited",
+    "fred.stlouisfed.org/series/INDPRO visited",
+    "Economics nowcasting Wikipedia (or clearly economics content) visible",
+    "Evaluation paper landing/abstract visible (DM or CRPS/proper scoring)"
+  ],
+  "QS5_nber_realtime_gdp_path": [
+    "nber.org/papers/ URL with WP number visible",
+    "philadelphiafed.org URL in real-time data section",
+    "Notes include WP number and Philly URL; no invented vintages"
+  ],
+  "QS6_nber_recession_vs_nowcast_disambiguation": [
+    "URL contains nber.org and business-cycle/dating content",
+    "Second URL is Wikipedia economics nowcasting or arXiv nowcast abstract",
+    "Notes explicitly contrast dating vs nowcasting"
+  ],
+  "QS7_ops_policy_compare_clauses": [
+    "arxiv.org help/license (or licenses) page visited with license options visible",
+    "NIH public access / open.nih.gov policy page visited",
+    "POT LICENSE blob shows MIT permission text",
+    "Notes include short quoted snippets"
+  ],
+  "QS8_cloud_tos_expect_friction": [
+    "PASS only if Terms URL open and a visible automation/scraping-related sentence is quoted",
+    "FAIL/BLOCKED is an acceptable observed outcome if captcha/login prevents access"
+  ],
+  "QS7b_corporate_tos_stripe_aws": [
+    "Visited a stripe.com legal/terms/SSA URL with legal body text visible",
+    "Visited aws.amazon.com/service-terms (or clearly linked Service Terms child page)",
+    "Post-nav layer records two short quotes from visible text OR documented block\u2014no fabricated clauses"
+  ]
+}

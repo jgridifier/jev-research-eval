@@ -1,0 +1,132 @@
+suite: stress_quant_v2
+version: v2
+description: "Quant stress goals v2 — CoS QC accepted. Grade on URLs/visible text; notes are post-nav."
+cases:
+  - id: QS1_multi_site_lit_survey
+    tier: writing_paper_survey
+    expect_fail: false
+    why: "Multi-hop across arXiv + NBER + journal TOC; must not stop after one search; Scholar may captcha."
+    url: "https://arxiv.org/"
+    goal: >
+      You are drafting a related-work section on mixed-frequency GDP nowcasting with dynamic factor
+      models. (1) On arXiv, find a paper clearly about GDP/macro nowcasting with factors or ragged-
+      edge data; open its abstract and note title, authors, year. (2) Go to
+      https://www.nber.org/papers and find a Giannone/Reichlin/Small or Banbura-related nowcasting
+      working paper; open the paper page and note the WP number. (3) Open
+      https://academic.oup.com/jrsssa and confirm whether you can see Series A branding; if site
+      search exists, search "optimal transport" or "nowcast" and note if any hit appears. Stop when
+      you have written down three concrete bibliographic anchors (arXiv id or title; NBER WP number;
+      JRSS-A page status). Do not invent papers if blocked—report the block.
+
+  - id: QS2_sarimax_papers_and_github
+    tier: sarimax_papers_and_code
+    expect_fail: false
+    why: "Must bridge stats.stackexchange or docs + GitHub issues + a paper; stop only when both literature and implementation pointers exist."
+    url: "https://www.statsmodels.org/stable/index.html"
+    goal: >
+      A quant hit a statsmodels SARIMAX convergence / LinAlgError style failure on seasonal monthly
+      data. From statsmodels docs, navigate to the SARIMAX documentation page. Then open GitHub search
+      (https://github.com/search) and find a statsmodels-related issue or discussion about SARIMAX
+      convergence, invertibility, or LinAlgError; open one real issue. Then open Google Scholar or
+      arXiv and find one paper on seasonal ARIMA / SARIMA state-space estimation (Hyndman-related or
+      state-space SARIMA is fine); open the abstract. Stop when you can cite: (a) the SARIMAX docs
+      URL, (b) one GitHub issue URL with number, (c) one paper title+authors or arXiv id. Prefer
+      public pages; if Scholar captchas, use arXiv instead and say so.
+
+  - id: QS3_ot_sinkhorn_implementation_hunt
+    tier: model_building_workflow
+    expect_fail: false
+    why: "Must verify MIT license on POT and locate Sinkhorn API docs—not just land on GitHub home."
+    url: "https://github.com/PythonOT/POT"
+    goal: >
+      You will clean-room a Sinkhorn-divergence imputer and need an MIT-licensed library. On the POT
+      GitHub repo, open the LICENSE file and confirm it is MIT. Open the official docs
+      https://pythonot.github.io/ and navigate to documentation for Sinkhorn or entropic OT / sinkhorn
+      divergence if linked. Also open https://github.com/AlessandroSpike/Nowcasting-with-Optimal-
+      Transport and check whether a LICENSE file exists at repo root. Stop when you can state: POT
+      license = MIT (quote first line), whether Spelta repo has LICENSE yes/no, and one docs URL for
+      Sinkhorn usage.
+
+  - id: QS4_ragged_edge_nowcast_workflow
+    tier: model_building_workflow
+    expect_fail: false
+    why: "Forces a mini research workflow across FRED + literature + scoring rules—not a single page open."
+    url: "https://fred.stlouisfed.org/"
+    goal: >
+      Design a ragged-edge nowcast checklist. Open FRED series GDP and INDPRO pages; note frequency
+      and last observation label on each. Open https://en.wikipedia.org/wiki/Nowcasting_(economics)
+      (or reach the economics nowcasting article from Nowcasting disambiguation) and capture a one-
+      sentence definition. Find (arXiv or DOI) a reference on proper scoring rules or Diebold-Mariano
+      forecast comparison—open an abstract/landing page (Gneiting/Raftery or Diebold-Mariano). Stop
+      when notes contain: GDP frequency, INDPRO frequency, econ-nowcast definition sentence, and one
+      forecast-evaluation citation anchor (title or DOI).
+
+  - id: QS5_nber_realtime_gdp_path
+    tier: nber_realistic
+    expect_fail: false
+    why: "Multi-step NBER+Phil Fed real-time data path; some pages are deep IAVs; easier to wander."
+    url: "https://www.nber.org/"
+    goal: >
+      Realistic lit intake for a real-time GDP project. From NBER, find and open a working paper page
+      on nowcasting or real-time forecasting (Giannone/Reichlin/Small or Croushore/Stark-related is
+      ideal; any clearly on-topic WP is OK). Then go to https://www.philadelphiafed.org/surveys-and-
+      data/real-time-data-research and open the Real-Time Data Research / Philadelphia Fed real-time
+      data landing; find a link or heading about real-time GDP or vintage data and open one concrete
+      dataset or documentation page if available. Stop when you have: NBER WP number + title, and a
+      Philadelphia Fed real-time URL with visible 'real-time' or 'vintage' language. If Philly Fed
+      navigation fails, stop and describe the last reachable page without inventing dataset names.
+
+  - id: QS6_nber_recession_vs_nowcast_disambiguation
+    tier: nber_realistic
+    expect_fail: false
+    why: "Easy to confuse NBER recession dating with nowcasting; agent must disambiguate via pages."
+    url: "https://www.nber.org/research/business-cycle-dating"
+    goal: >
+      Open the NBER business cycle dating page and extract how NBER defines recessions (peak-to-trough
+      language). Then open an economics nowcasting page (Wikipedia Nowcasting (economics) or an arXiv
+      nowcasting abstract) and state in one sentence how nowcasting differs from recession dating.
+      Stop when both pages were visited and the notes contain a contrast sentence that does not call
+      NBER dating a GDP nowcast model.
+
+  - id: QS7_ops_policy_compare_clauses
+    tier: terms_policy_ops_review
+    expect_fail: false
+    why: "Long policy pages; must find definitions and obligations across two sites—mimics ops review."
+    url: "https://arxiv.org/help/license"
+    goal: >
+      Operations-style review of research distribution rules. On arXiv license/help pages, find what
+      license options exist for submitting papers and note one obligation (what submitters must
+      ensure). Then open https://open.nih.gov/policy (or NIH Public Access Policy page reachable from
+      open.nih.gov) and find a sentence about public access / deposit obligations for NIH-supported
+      work. Then open https://github.com/PythonOT/POT/blob/master/LICENSE and confirm MIT permission
+      language ('Permission is hereby granted'). Stop when notes list: (1) one arXiv license
+      obligation, (2) one NIH public-access obligation snippet, (3) MIT grant phrase seen on POT
+      LICENSE. Quote short phrases visible on page—do not paraphrase from memory only.
+
+  - id: QS8_cloud_tos_expect_friction
+    tier: terms_policy_ops_review
+    expect_fail: true
+    why: "Intentionally heavy TOS + possible geo/cookie/bot walls; large scroll; may require accept cookies endlessly."
+    url: "https://www.ssrn.com/"
+    goal: >
+      Find SSRN's Terms of Use page from the site footer, open it, and extract the clause that
+      restricts automated scraping/crawling or unauthorized bulk download if such a clause exists.
+      Also extract the definition of 'User Content' or equivalent if present. Stop only after Terms of
+      Use text is on screen with a quoted scraping/automation-related sentence—or stop and report
+      blocked if captcha/login/cookie wall prevents opening Terms. This case is allowed to fail
+      closed; do not invent clause text.
+
+  - id: QS7b_corporate_tos_stripe_aws
+    tier: terms_policy_ops_review
+    expect_fail: false
+    why: "Long legal pages, cookie banners, possible geo variants; must extract real quoted clauses from two vendors without inventing text."
+    url: "https://stripe.com/legal/ssa"
+    goal: >
+      Operations review across vendor terms (public pages only). Open Stripe's service/terms legal
+      page (start from this SSA/legal URL; if redirected to a Terms landing, follow the main Services
+      Agreement / Terms of Service link). Find and quote a short visible sentence about acceptable
+      use, prohibited activities, or API/automated access restrictions if present. Then open
+      https://aws.amazon.com/service-terms/ and find a clause or definition related to your content /
+      customer content or acceptable use; quote one short visible phrase. Stop when both sites have
+      been visited and notes include two short verbatim quotes (one Stripe, one AWS) OR an explicit
+      block report if a page will not load. Do not invent legal text.
